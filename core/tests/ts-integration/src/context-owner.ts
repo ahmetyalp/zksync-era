@@ -212,7 +212,7 @@ export class TestContextOwner {
             const randomWallet = ethers.Wallet.createRandom();
             wallets[suiteFile] = randomWallet.privateKey;
 
-            console.log(`Wallet for ${suiteFile}: ${randomWallet.address} / ${randomWallet.privateKey}`)
+            console.log(`Wallet for ${suiteFile}: ${randomWallet.address} / ${randomWallet.privateKey}`);
         }
         this.reporter.debug(`Test wallets: ${JSON.stringify(wallets, undefined, 2)}`);
         this.reporter.finishAction();
