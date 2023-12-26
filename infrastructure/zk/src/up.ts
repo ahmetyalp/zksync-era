@@ -8,7 +8,6 @@ function createVolumes() {
     fs.mkdirSync(`${process.env.ZKSYNC_HOME}/volumes/geth`, { recursive: true });
     fs.mkdirSync(`${process.env.ZKSYNC_HOME}/volumes/prysm/beacon`, { recursive: true });
     fs.mkdirSync(`${process.env.ZKSYNC_HOME}/volumes/prysm/validator`, { recursive: true });
-    fs.mkdirSync(`${process.env.ZKSYNC_HOME}/volumes/postgres`, { recursive: true });
 
     fs.copyFileSync(
         `${process.env.ZKSYNC_HOME}/docker/prysm/config.yml`,
@@ -36,7 +35,7 @@ export async function up(composeFile?: string) {
     await utils.sleep(1);
     createVolumes();
     if (composeFile) {
-        await utils.spawn(`docker compose -f ${composeFile} up -d geth postgres`);
+        await utils.spawn(`docker compose -f ${composeFile} up -d geth`);
     } else {
         await utils.spawn('docker compose up -d');
     }
