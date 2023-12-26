@@ -209,8 +209,10 @@ export class TestContextOwner {
         this.reporter.startAction(`Creating test wallets`);
         const wallets: TestWallets = {};
         for (const suiteFile of suites) {
-            const randomWallet = ethers.Wallet.createRandom().privateKey;
-            wallets[suiteFile] = randomWallet;
+            const randomWallet = ethers.Wallet.createRandom();
+            wallets[suiteFile] = randomWallet.privateKey;
+
+            console.log(`Wallet for ${suiteFile}: ${randomWallet.address} / ${randomWallet.privateKey}`)
         }
         this.reporter.debug(`Test wallets: ${JSON.stringify(wallets, undefined, 2)}`);
         this.reporter.finishAction();
